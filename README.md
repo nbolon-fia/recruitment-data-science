@@ -80,7 +80,7 @@ Additional conditions:
 
 - **Start time**:  the lock-up starts at the first sample below −60%.
 
-To help you make sure you have the right definition, we have included in the training stints two label columns in  chassis.parquet`: 
+To help you make sure you have the right definition, we have included in the training stints two label columns in `chassis.parquet`: 
 - lockup_start: a lock-up starts at this timestamp.
 - target: a lock-up starts within the next 0.5 s. You can use this column as reference label for your task. 
 
