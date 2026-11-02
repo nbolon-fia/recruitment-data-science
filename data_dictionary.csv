@@ -1,0 +1,80 @@
+file,channel,unit,nominal_rate_hz,description,typical_range,notes
+driver_inputs.parquet,t_s,s,50,"Timestamp of the sample on that logger's clock, seconds from the start of the stint.",,Each file has its own clock
+driver_inputs.parquet,throttle_pos,%,50,Throttle pedal position.,0-100 %,
+driver_inputs.parquet,brake_pos,%,50,Brake pedal position.,0-100 %,"Pedal position, not brake pressure."
+driver_inputs.parquet,clutch_pos,%,50,Clutch pedal position.,0-100 %,Mostly 0: most drivers used automatic clutch. Of little use here.
+driver_inputs.parquet,steering_angle,deg,50,Steering wheel angle; sign gives the direction.,+/-320 deg at full lock,"Steering wheel angle, not road-wheel angle."
+driver_inputs.parquet,gear,,50,Engaged gear.,"-1 = reverse, 0 = neutral, 1-6",
+chassis.parquet,t_s,s,50,"Timestamp of the sample on that logger's clock, seconds from the start of the stint.",,Each file has its own clock
+chassis.parquet,ground_speed,km/h,50,Car speed over the ground.,0-265 km/h,
+chassis.parquet,engine_rpm,rpm,50,Engine speed.,"0-9,500 rpm",
+chassis.parquet,cg_accel_longitudinal,G,50,Longitudinal acceleration at the centre of gravity; negative = decelerating.,about -2 to +1 G when driving,Spikes up to +/-100 G during impacts and off-track excursions.
+chassis.parquet,cg_accel_lateral,G,50,Lateral acceleration at the centre of gravity.,about +/-2 G when driving,Spikes up to +/-100 G during impacts and off-track excursions.
+chassis.parquet,cg_accel_vertical,G,50,Vertical acceleration at the centre of gravity.,about +/-2 G when driving,Kerbs and bumps show up here.
+chassis.parquet,chassis_yaw_rate,deg/s,50,Rotation rate of the car around the vertical axis.,deg/s; mostly within +/-60 when driving,Large values during spins.
+chassis.parquet,chassis_pitch_rate,deg/s,50,Rotation rate around the lateral axis (nose dive under braking).,deg/s,
+chassis.parquet,chassis_roll_rate,deg/s,50,Rotation rate around the longitudinal axis.,deg/s,
+chassis.parquet,abs_active,,50,"1 when ABS is intervening, 0 otherwise.",0 / 1,ABS was enabled in some sessions only
+chassis.parquet,tc_active,,50,"1 when traction control is intervening, 0 otherwise.",0 / 1,No TC in this data set.
+chassis.parquet,wheel_angular_speed_fl,rad/s,50,Rotation speed of the wheel.,about 0-220rad/s when driving,
+chassis.parquet,wheel_angular_speed_fr,rad/s,50,Rotation speed of the wheel.,about 0-220rad/s when driving,
+chassis.parquet,wheel_angular_speed_rl,rad/s,50,Rotation speed of the wheel.,about 0-220rad/s when driving,
+chassis.parquet,wheel_angular_speed_rr,rad/s,50,Rotation speed of the wheel.,about 0-220rad/s when driving,
+chassis.parquet,tire_slip_ratio_fl,%,50,"Longitudinal slip computed by the simulator: (wheel_angular_speed x 0.340 m - v) / v x 100, with v = ground_speed / 3.6 in m/s and 0.340 m the unloaded tyre radius.",-100 to +100 %,"Close to 0 when rolling freely, a few % negative under normal braking, -100 = wheel stopped while the car moves, positive = wheelspin. Unreliable at very low speed."
+chassis.parquet,tire_slip_ratio_fr,%,50,"Longitudinal slip computed by the simulator: (wheel_angular_speed x 0.340 m - v) / v x 100, with v = ground_speed / 3.6 in m/s and 0.340 m the unloaded tyre radius.",-100 to +100 %,"Close to 0 when rolling freely, a few % negative under normal braking, -100 = wheel stopped while the car moves, positive = wheelspin. Unreliable at very low speed."
+chassis.parquet,tire_slip_ratio_rl,%,50,"Longitudinal slip computed by the simulator: (wheel_angular_speed x 0.340 m - v) / v x 100, with v = ground_speed / 3.6 in m/s and 0.340 m the unloaded tyre radius.",-100 to +100 %,"Close to 0 when rolling freely, a few % negative under normal braking, -100 = wheel stopped while the car moves, positive = wheelspin. Unreliable at very low speed."
+chassis.parquet,tire_slip_ratio_rr,%,50,"Longitudinal slip computed by the simulator: (wheel_angular_speed x 0.340 m - v) / v x 100, with v = ground_speed / 3.6 in m/s and 0.340 m the unloaded tyre radius.",-100 to +100 %,"Close to 0 when rolling freely, a few % negative under normal braking, -100 = wheel stopped while the car moves, positive = wheelspin. Unreliable at very low speed."
+chassis.parquet,tire_slip_angle_fl,deg,50,Angle between the direction the tyre points and the direction it travels.,deg; mostly within +/-10 when driving,Ignore value at low speed or in spins
+chassis.parquet,tire_slip_angle_fr,deg,50,Angle between the direction the tyre points and the direction it travels.,deg; mostly within +/-10 when driving,Ignore value at low speed or in spins
+chassis.parquet,tire_slip_angle_rl,deg,50,Angle between the direction the tyre points and the direction it travels.,deg; mostly within +/-10 when driving,Ignore value at low speed or in spins
+chassis.parquet,tire_slip_angle_rr,deg,50,Angle between the direction the tyre points and the direction it travels.,deg; mostly within +/-10 when driving,Ignore value at low speed or in spins
+tyre_loads.parquet,t_s,s,20,"Timestamp of the sample on that logger's clock, seconds from the start of the stint.",,Each file has its own clock
+tyre_loads.parquet,tire_load_fl,N,20,Vertical load on the tyre.,"N; about 2,000-10,000 when driving",0 when the wheel is in the air; large spikes on kerbs and impacts.
+tyre_loads.parquet,tire_load_fr,N,20,Vertical load on the tyre.,"N; about 2,000-10,000 when driving",0 when the wheel is in the air; large spikes on kerbs and impacts.
+tyre_loads.parquet,tire_load_rl,N,20,Vertical load on the tyre.,"N; about 2,000-10,000 when driving",0 when the wheel is in the air; large spikes on kerbs and impacts.
+tyre_loads.parquet,tire_load_rr,N,20,Vertical load on the tyre.,"N; about 2,000-10,000 when driving",0 when the wheel is in the air; large spikes on kerbs and impacts.
+tyre_loads.parquet,suspension_travel_fl,mm,20,Suspension compression.,mm,
+tyre_loads.parquet,suspension_travel_fr,mm,20,Suspension compression.,mm,
+tyre_loads.parquet,suspension_travel_rl,mm,20,Suspension compression.,mm,
+tyre_loads.parquet,suspension_travel_rr,mm,20,Suspension compression.,mm,
+tyre_loads.parquet,ride_height_fl,mm,20,Height of the chassis above the ground at that corner.,mm; tens of mm when driving,"Very large values (up to ~1,400 mm) when the car leaves the track surface or after impacts; small negatives on kerbs."
+tyre_loads.parquet,ride_height_fr,mm,20,Height of the chassis above the ground at that corner.,mm; tens of mm when driving,"Very large values (up to ~1,400 mm) when the car leaves the track surface or after impacts; small negatives on kerbs."
+tyre_loads.parquet,ride_height_rl,mm,20,Height of the chassis above the ground at that corner.,mm; tens of mm when driving,"Very large values (up to ~1,400 mm) when the car leaves the track surface or after impacts; small negatives on kerbs."
+tyre_loads.parquet,ride_height_rr,mm,20,Height of the chassis above the ground at that corner.,mm; tens of mm when driving,"Very large values (up to ~1,400 mm) when the car leaves the track surface or after impacts; small negatives on kerbs."
+tyre_loads.parquet,tire_loaded_radius_fl,mm,20,Tyre radius under load.,"mm; 300-340 front, 300-352 rear",The slip ratio uses the unloaded radius (340 mm) instead.
+tyre_loads.parquet,tire_loaded_radius_fr,mm,20,Tyre radius under load.,"mm; 300-340 front, 300-352 rear",The slip ratio uses the unloaded radius (340 mm) instead.
+tyre_loads.parquet,tire_loaded_radius_rl,mm,20,Tyre radius under load.,"mm; 300-340 front, 300-352 rear",The slip ratio uses the unloaded radius (340 mm) instead.
+tyre_loads.parquet,tire_loaded_radius_rr,mm,20,Tyre radius under load.,"mm; 300-340 front, 300-352 rear",The slip ratio uses the unloaded radius (340 mm) instead.
+tyre_temps.parquet,t_s,s,5,"Timestamp of the sample on that logger's clock, seconds from the start of the stint.",,Each file has its own clock
+tyre_temps.parquet,tire_temp_core_fl,C,5,Tyre core (carcass) temperature. Slow: changes over tens of seconds.,C; about 60-120 when driving,The sim starts with the tire at ambient temp(26 C)
+tyre_temps.parquet,tire_temp_core_fr,C,5,Tyre core (carcass) temperature. Slow: changes over tens of seconds.,C; about 60-120 when driving,The sim starts with the tire at ambient temp(26 C)
+tyre_temps.parquet,tire_temp_core_rl,C,5,Tyre core (carcass) temperature. Slow: changes over tens of seconds.,C; about 60-120 when driving,The sim starts with the tire at ambient temp(26 C)
+tyre_temps.parquet,tire_temp_core_rr,C,5,Tyre core (carcass) temperature. Slow: changes over tens of seconds.,C; about 60-120 when driving,The sim starts with the tire at ambient temp(26 C)
+tyre_temps.parquet,tire_temp_inner_fl,C,5,"Tread surface temperature, inner third of the tyre.",C,
+tyre_temps.parquet,tire_temp_inner_fr,C,5,"Tread surface temperature, inner third of the tyre.",C,
+tyre_temps.parquet,tire_temp_inner_rl,C,5,"Tread surface temperature, inner third of the tyre.",C,
+tyre_temps.parquet,tire_temp_inner_rr,C,5,"Tread surface temperature, inner third of the tyre.",C,
+tyre_temps.parquet,tire_temp_middle_fl,C,5,"Tread surface temperature, middle third.",C,
+tyre_temps.parquet,tire_temp_middle_fr,C,5,"Tread surface temperature, middle third.",C,
+tyre_temps.parquet,tire_temp_middle_rl,C,5,"Tread surface temperature, middle third.",C,
+tyre_temps.parquet,tire_temp_middle_rr,C,5,"Tread surface temperature, middle third.",C,
+tyre_temps.parquet,tire_temp_outer_fl,C,5,"Tread surface temperature, outer third.",C,
+tyre_temps.parquet,tire_temp_outer_fr,C,5,"Tread surface temperature, outer third.",C,
+tyre_temps.parquet,tire_temp_outer_rl,C,5,"Tread surface temperature, outer third.",C,
+tyre_temps.parquet,tire_temp_outer_rr,C,5,"Tread surface temperature, outer third.",C,
+tyre_temps.parquet,tire_pressure_fl,psi,5,Tyre pressure.,psi; about 18-30 when hot,Follows core temperature almost exactly (gas law)
+tyre_temps.parquet,tire_pressure_fr,psi,5,Tyre pressure.,psi; about 18-30 when hot,Follows core temperature almost exactly (gas law)
+tyre_temps.parquet,tire_pressure_rl,psi,5,Tyre pressure.,psi; about 18-30 when hot,Follows core temperature almost exactly (gas law)
+tyre_temps.parquet,tire_pressure_rr,psi,5,Tyre pressure.,psi; about 18-30 when hot,Follows core temperature almost exactly (gas law)
+position.parquet,t_s,s,10,"Timestamp of the sample on that logger's clock, seconds from the start of the stint.",,Each file has its own clock
+position.parquet,car_coord_x,m,10,Car position in the track coordinate system.,m,
+position.parquet,car_coord_y,m,10,Car position in the track coordinate system.,m,
+position.parquet,car_coord_z,m,10,Car elevation in the track coordinate system.,m,
+position.parquet,car_pos_norm,,10,Position along the lap.,From 0 at start to 1 at the end of lap. Proportional to the distance travelled,
+position.parquet,session_lap_count,,10,Number of laps completed in the session.,integer,Increments when crossing the start/finish line; first and last laps of a stint are usually partial.
+position.parquet,lap_time,s,10,Time elapsed in the current lap.,s,Resets at the start/finish line.
+position.parquet,last_lap_time,s,10,Time of the previous completed lap.,s,"0 until a lap has been completed. Includes slow laps (spins, out-laps)."
+position.parquet,num_tires_off_track,,10,Number of tyres outside the track edge.,0-4,
+position.parquet,fuel_level,l,10,Fuel in the tank,l,Constant (30 l) in this data set: fuel consumption was off.
+chassis.parquet,lockup_start,bool,50,"LABEL: True at the first row of a brake lock-up (front wheel below -60 % for >= 0.2 s, 1 s merge).",True / False,
+chassis.parquet,target,bool,50,LABEL: True if a brake lock-up starts within the next 0.5 s,True / False,
